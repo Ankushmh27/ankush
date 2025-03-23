@@ -1,0 +1,94 @@
+package basicScript;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
+public class AppTest {
+	  @SuppressWarnings({ "deprecation" })
+		@Test
+	    public void TMApp() throws MalformedURLException, InterruptedException{
+	        AndroidDriver driver;
+	        
+			UiAutomator2Options options = new UiAutomator2Options();
+			options.setPlatformName("Android");
+			options.setAutomationName("UiAutomator2");
+			options.setDeviceName("ZD222JCVCJ");
+//			options.setAppPackage("com.eagleitsolutions.shetkarimitra");
+//			options.setAppActivity("com.eagleitsolutions.shetkarimitra.MainActivity");
+			
+			//when truecaller installed in mobile use below code
+//			options.setAppPackage("com.truecaller");
+//			options.setAppActivity("com.truecaller.sdk.oAuth.view.consentScreen.BottomSheetOAuthActivity");
+			
+			//Truecalluer not installed
+			options.setAppPackage("com.google.android.permissioncontroller");
+			options.setAppActivity("com.android.permissioncontroller.permission.ui.GrantPermissionsActivity");
+			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			
+			WebDriverWait wait = new  WebDriverWait(driver, Duration.ofSeconds(10));
+//			WebElement allowButton = driver.findElement(By.xpath("//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]"));
+//			wait.until(ExpectedConditions.visibilityOf(allowButton));
+//			allowButton.click();	
+		
+			WebElement mobileNumber= driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etInputField\"]"));
+			wait.until(ExpectedConditions.visibilityOf(mobileNumber));
+			mobileNumber.sendKeys("9999999999");
+			
+			WebElement getOTP = driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.intellihealth.truemeds:id/tvTitle\" and @text=\"Get OTP\"]"));
+			getOTP.click();//android.widget.TextView[@resource-id="com.intellihealth.truemeds:id/tvTitle" and @text="Get OTP"]
+
+			//OTP input field 
+		    driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etOtp1\"]"))
+					.sendKeys("1");
+			driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etOtp2\"]"))
+					.sendKeys("1");
+			driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etOtp3\"]"))
+					.sendKeys("1");
+			driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etOtp4\"]"))
+					.sendKeys("1");
+			Thread.sleep(2000);
+			
+			WebElement cancel_choose_ur_Location = driver.findElement(By.xpath("//android.widget.ImageView[@resource-id=\"com.intellihealth.truemeds.stage:id/imageClose\"]"));
+			wait.until(ExpectedConditions.visibilityOf(cancel_choose_ur_Location));
+			System.out.println("cancel_choose_ur_Location"+ cancel_choose_ur_Location.isDisplayed());
+			cancel_choose_ur_Location.click();
+			
+			/*WebElement frame=driver.findElement(By.xpath("//android.view.View[@resource-id=\"android:id/navigationBarBackground\"]"));
+			driver.switchTo().frame(frame);
+			WebElement enterpin=driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds.stage:id/etInputField\"]"));
+			wait.until(ExpectedConditions.visibilityOf(enterpin));
+			enterpin.sendKeys("40079");
+//			WebElement select_pincode= driver.findElement(By.xpath("(//android.view.ViewGroup[@resource-id=\"com.intellihealth.truemeds.stage:id/cl_saved_address\"])[1]"));
+//			wait.until(ExpectedConditions.visibilityOf(select_pincode));
+//			select_pincode.click();
+			WebElement enterPin= driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds.stage:id/etInputField\"]"));
+			wait.until(ExpectedConditions.visibilityOf(enterPin));
+			enterPin.sendKeys("400079");
+		    Thread.sleep(1000);	
+			
+			WebElement cancel_choose_ur_Location = driver.findElement(By.id("com.intellihealth.truemeds.stage:id/imageClose"));
+			wait.until(ExpectedConditions.visibilityOf(cancel_choose_ur_Location));
+			System.out.println("cancel_choose_ur_Location"+ cancel_choose_ur_Location.isDisplayed());
+			cancel_choose_ur_Location.click();
+			
+			WebElement serachBox = driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"com.intellihealth.truemeds:id/etSearch\"]"));
+			wait.until(ExpectedConditions.visibilityOf(serachBox));
+			System.out.println("cancel_choose_ur_Location"+ serachBox.isDisplayed());
+			serachBox.sendKeys("telma 40 tablet 30");
+			serachBox.sendKeys(Keys.ENTER);
+	    */
+	    }
+	}
+
+
